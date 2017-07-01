@@ -1,0 +1,52 @@
+{
+  "name": "ContactCard",
+  "plural": "ContactCards",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "email": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "tel": {
+      "type": "string"
+    },
+    "key": {
+      "type": "string"
+    },
+    "org": {
+      "type": "string"
+    },
+    "adr": {
+      "type": "object"
+    },
+    "logo": {
+      "type": "string"
+    },
+    "photo": {
+      "type": "string"
+    },
+    "bday": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "role": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}
