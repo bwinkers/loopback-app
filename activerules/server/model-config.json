@@ -17,7 +17,7 @@
     "dataSource": "izzup",
     "public": true,
     "options": {
-        "emailVerificationRequired": true
+      "emailVerificationRequired": true
     }
   },
   "AccessToken": {
@@ -46,5 +46,9 @@
   "Product": {
     "dataSource": "izzup",
     "public": true
+  },
+  "Mailer": {
+    "dataSource": "mailout",
+    "public": false
   }
 }
