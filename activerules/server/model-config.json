@@ -36,11 +36,11 @@
     "public": false
   },
   "ContactCard": {
-    "dataSource": "izzup-local",
+    "dataSource": "izzup",
     "public": true
   },
   "Product": {
-    "dataSource": "izzup-local",
+    "dataSource": "izzup",
     "public": true
   }
 }

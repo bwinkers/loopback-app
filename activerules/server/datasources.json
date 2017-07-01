@@ -3,13 +3,13 @@
     "name": "db",
     "connector": "memory"
   },
-  "izzup-local": {
+  "izzup": {
     "host": "localhost",
     "port": 0,
     "url": "",
     "database": "izzup",
     "password": "",
-    "name": "izzup-local",
+    "name": "izzup",
     "user": "",
     "connector": "mongodb"
   }
