@@ -2,5 +2,15 @@
   "db": {
     "name": "db",
     "connector": "memory"
+  },
+  "izzup-local": {
+    "host": "localhost",
+    "port": 0,
+    "url": "",
+    "database": "izzup",
+    "password": "",
+    "name": "izzup-local",
+    "user": "",
+    "connector": "mongodb"
   }
 }
