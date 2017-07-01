@@ -14,25 +14,25 @@
     ]
   },
   "User": {
-    "dataSource": "db"
+    "dataSource": "izzup"
   },
   "AccessToken": {
-    "dataSource": "db",
+    "dataSource": "izzup",
     "public": false
   },
   "ACL": {
-    "dataSource": "db",
+    "dataSource": "izzup",
     "public": false
   },
   "RoleMapping": {
-    "dataSource": "db",
+    "dataSource": "izzup",
     "public": false,
     "options": {
       "strictObjectIDCoercion": true
     }
   },
   "Role": {
-    "dataSource": "db",
+    "dataSource": "izzup",
     "public": false
   },
   "ContactCard": {
