@@ -1,12 +1,14 @@
 {
   "izzup": {
+    "connector": "mongodb",
+    "url": "${MONGODB_URL}",
     "host": "localhost",
     "port": 0,
     "url": "",
     "database": "izzup",
     "password": "",
     "name": "izzup",
-    "user": "",
-    "connector": "mongodb"
+    "user": ""
+    
   }
 }
