@@ -9,4 +9,12 @@ It adds ActiveRules goodness on top of:
 loopback-app$ lb
 loopback-app$ lb datasource
 
+## Running
+
+### Prod
+MONGODB_URL=xxx MAILGUNKEY=yyy node .
+
+### Dev
+MAILGUNKEY=yyy nodemon .
+
 copyright 2017 Brian Winkers - ALL RIGHTS RESERVED
