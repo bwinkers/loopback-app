@@ -1,14 +1,19 @@
 {
   "izzup": {
-    "connector": "mongodb",
-    "url": "${MONGODB_URL}",
     "host": "localhost",
+    "url": "${MONGODB_URL}",
     "port": 0,
     "url": "",
     "database": "izzup",
     "password": "",
     "name": "izzup",
+    "connector": "mongodb",
     "user": ""
-    
+  },
+  "mailout": {
+    "name": "mailout",
+    "connector": "loopback-connector-mailgun",
+        "apikey": "${MAILGUNKEY}",
+        "domain": "mg.izzup.com"
   }
 }
