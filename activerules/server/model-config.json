@@ -17,7 +17,8 @@
     "dataSource": "izzup",
     "public": true,
     "options": {
-      "emailVerificationRequired": true
+      "emailVerificationRequired": true,
+      "restrictResetPasswordTokenScope": true
     }
   },
   "AccessToken": {
