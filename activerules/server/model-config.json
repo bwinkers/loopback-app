@@ -38,5 +38,9 @@
   "ContactCard": {
     "dataSource": "izzup-local",
     "public": true
+  },
+  "Product": {
+    "dataSource": "izzup-local",
+    "public": true
   }
 }
