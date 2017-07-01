@@ -14,7 +14,11 @@
     ]
   },
   "User": {
-    "dataSource": "izzup"
+    "dataSource": "izzup",
+    "public": true,
+    "options": {
+        "emailVerificationRequired": true
+    }
   },
   "AccessToken": {
     "dataSource": "izzup",
