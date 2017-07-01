@@ -47,7 +47,7 @@
     "dataSource": "izzup",
     "public": true
   },
-  "Mailer": {
+  "Email": {
     "dataSource": "mailout",
     "public": false
   }
