@@ -51,5 +51,9 @@
   "Email": {
     "dataSource": "mailout",
     "public": false
+  },
+  "Reviewer": {
+    "dataSource": "izzup",
+    "public": true
   }
 }
