@@ -4,7 +4,7 @@ It adds ActiveRules goodness on top of:
 * Loopback.io
 * OpenAPI
 * Mailgun
-* Angular2
+* React
 
 loopback-app$ lb
 loopback-app$ lb datasource
