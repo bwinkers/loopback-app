@@ -25,18 +25,31 @@
   </head>
   <body>
     <div data-role="header" class="ui-bar ui-bar-b">
-      <h1><a href="#home" style="color:white">izzup!</a></h1>
-     <a href="#popupMenu" data-rel="popup" data-transition="slide" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-bars ui-btn-icon-right ui-btn-b">Apps</a>
+      <h1><a href="#home" style="color:whitesmoke">izzup!</a></h1>
+      <a href="#appsMenu" data-rel="popup" data-transition="slide" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-bars ui-btn-icon-right ui-btn-b">Apps</a>
+      <a href="#userMenu" data-rel="popup" data-transition="slide" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-gear ui-btn-icon-right ui-btn-b ui-btn-right">User</a>
     </div>
-    <div data-role="popup" id="popupMenu" class="ui-bar ui-bar-b">
+    
+    <!-- MENUS -->
+    <div data-role="popup" id="appsMenu" class="ui-bar ui-bar-b">
       <ul data-role="listview" data-inset="true">
-        <li><a href="#settings">Settings</a></li>
         <li><a href="#keys">Keys</a></li>
         <li><a href="#contacts">Contacts</a></li>
+        <li><a href="#classifieds">Classifieds</a></li>
+        <li><a href="#btcwrite">BTCWrite</a></li>
+      </ul>
+    </div>
+    <div data-role="popup" id="userMenu" class="ui-bar ui-bar-b">
+      <ul data-role="listview" data-inset="true">
+        <li><a href="#login">Login</a></li>
+        <li><a href="#change-password">Change Password</a></li>
+        <li><a href="#profile">Manage Profile</a></li>
+        <li><a href="#funds">Manage Funds</a></li>
       </ul>
     </div>
     
-    <div data-role="page" id="home"  class="ui-body, ui-body-a and ui-corner-all">
+    <!-- PAGES -->
+    <div data-role="page" id="home">
       <div role="main" class="ui-content">
         <h2>Welcome to izzup!</h2>
         <p class="mc-top-margin-1-5"><b>Existing Users</b></p>
@@ -94,28 +107,34 @@
     </div>
     
     <div data-role="page" id="reset-password">
-        <div role="main" class="ui-content">
-            <h2>Reset Password</h2>
-            <label for="txt-tmp-password">Temporary Password</label>
-            <input type="password" name="txt-tmp-password" id="txt-tmp-password" value="">
-            <label for="txt-new-password">New Password</label>
-            <input type="password" name="txt-new-password" id="txt-new-password" value="">
-            <label for="txt-new-password-confirm">Confirm New Password</label>
-            <input type="password" name="txt-new-password-confirm" id="txt-new-password-confirm" value="">
-            <a href="#dlg-pwd-changed" data-rel="popup" data-transition="pop" data-position-to="window" id="btn-submit" class="ui-btn ui-btn-a ui-corner-all mc-top-margin-1-5">Submit</a>
-            <div data-role="popup" id="dlg-pwd-changed" data-dismissible="false" style="max-width:400px;">
-                <div data-role="header">
-                    <h1>Done</h1>
-                </div>
-                <div role="main" class="ui-content">
-                    <p>Your password was changed.</p>
-                    <div class="mc-text-center"><a href="sign-in.html" class="ui-btn ui-corner-all ui-shadow ui-btn-a mc-top-margin-1-5">OK</a></div>
-                </div>
-            </div>
+      <div role="main" class="ui-content">
+        <h2>Reset Password</h2>
+        <label for="txt-tmp-password">Temporary Password</label>
+        <input type="password" name="txt-tmp-password" id="txt-tmp-password" value="">
+        <label for="txt-new-password">New Password</label>
+        <input type="password" name="txt-new-password" id="txt-new-password" value="">
+        <label for="txt-new-password-confirm">Confirm New Password</label>
+        <input type="password" name="txt-new-password-confirm" id="txt-new-password-confirm" value="">
+        <a href="#dlg-pwd-changed" data-rel="popup" data-transition="pop" data-position-to="window" id="btn-submit" class="ui-btn ui-btn-a ui-corner-all mc-top-margin-1-5">Submit</a>
+        <div data-role="popup" id="dlg-pwd-changed" data-dismissible="false" style="max-width:400px;">
+          <div data-role="header">
+            <h1>Done</h1>
+          </div>
+          <div role="main" class="ui-content">
+            <p>Your password was changed.</p>
+            <div class="mc-text-center"><a href="sign-in.html" class="ui-btn ui-corner-all ui-shadow ui-btn-a mc-top-margin-1-5">OK</a></div>
+          </div>
         </div>
+      </div>
+    </div>
+    
+    <div data-role="page" id="btcwrite">
+      <div role="main" class="ui-content">
+        <h2>BTCWrite&trade;</h2>
+        <p>Write to the blockchain</p>
+      </div>
     </div>
 
-    
     <div data-role="page" id="settings">
       <div role="main" class="ui-content">
         <h2>Settings</h2>
@@ -144,10 +163,45 @@
       </div>
     </div>
     
-    <div data-role="page" id="key">
+    <div data-role="page" id="contact">
       <div role="main" class="ui-content">
         <h2>Contact</h2>
         <p>Create or manage a contact</p>
+      </div>
+    </div>
+    
+    <div data-role="page" id="classifieds">
+      <div role="main" class="ui-content">
+        <h2>Classifieds</h2>
+        <p>Your Classifieds</p>
+      </div>
+    </div>
+    
+    <div data-role="page" id="logout">
+      <div role="main" class="ui-content">
+        <h2>Logged Out</h2>
+        <p>You have been logged out.</p>
+      </div>
+    </div>
+    
+    <div data-role="page" id="change-password">
+      <div role="main" class="ui-content">
+        <h2>Change Password</h2>
+        <p>Change your password</p>
+      </div>
+    </div>
+    
+    <div data-role="page" id="profile">
+      <div role="main" class="ui-content">
+        <h2>User Profile</h2>
+        <p>Update your profile</p>
+      </div>
+    </div>
+    
+    <div data-role="page" id="funds">
+      <div role="main" class="ui-content">
+        <h2>Member Funds</h2>
+        <p>Manage izzup! funds</p>
       </div>
     </div>
        
@@ -157,9 +211,8 @@
         <p>Please contact the <a href="mailto:">HelpDesk</a> to resolve this issue.</p>
       </div>
     </div>
-    
-    
-    
+       
+    <!-- POPUPS -->
     <div data-role="popup" id="dlg-signup-verification-sent" data-dismissible="false" style="max-width:400px;">
       <div class="ui-content">
         <h3>Confirm Your Email Address</h3>
