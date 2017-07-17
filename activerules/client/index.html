@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Izzup!</title>
+    <title>izzup!</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
@@ -13,14 +13,22 @@
       $("[data-role=popup]").popup().enhanceWithin();
       });
     </script>
-
+    <script src="/js/settings.js" type="text/javascript"></script>
+    <style>
+      h1 a { 
+        text-decoration:none; 
+      }
+      h1 a:visited { 
+        text-decoration:none;
+      }
+    </style>
   </head>
   <body>
-    <div data-role="header" data-theme="a">
-      <h1><a href="#home">Izzup!</a></h1>
-     <a href="#popupMenu" data-rel="popup" data-transition="slide" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-bars ui-btn-icon-right ui-btn-a">Apps</a>
+    <div data-role="header" class="ui-bar ui-bar-b">
+      <h1><a href="#home" style="color:white">izzup!</a></h1>
+     <a href="#popupMenu" data-rel="popup" data-transition="slide" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-bars ui-btn-icon-right ui-btn-b">Apps</a>
     </div>
-    <div data-role="popup" id="popupMenu" data-theme="a">
+    <div data-role="popup" id="popupMenu" class="ui-bar ui-bar-b">
       <ul data-role="listview" data-inset="true">
         <li><a href="#settings">Settings</a></li>
         <li><a href="#keys">Keys</a></li>
@@ -28,9 +36,9 @@
       </ul>
     </div>
     
-    <div data-role="page" id="home" data-theme="a">
+    <div data-role="page" id="home"  class="ui-body, ui-body-a and ui-corner-all">
       <div role="main" class="ui-content">
-        <h2>Welcome to Izzup!</h2>
+        <h2>Welcome to izzup!</h2>
         <p class="mc-top-margin-1-5"><b>Existing Users</b></p>
         <a href="#login" class="ui-btn ui-corner-all">Login</a>
         <p class="mc-top-margin-1-5"><b>Don't have an account?</b></p>
@@ -38,7 +46,7 @@
         </div>
     </div>
     
-    <div data-role="page" id="login" data-theme="a">
+    <div data-role="page" id="login">
       <div role="main" class="ui-content">
         <h2>Member Login</h2>
         <form action="/api/v1/Users/login" method="post">
@@ -57,7 +65,7 @@
       </div>
     </div>
     
-    <div data-role="page" id="signup" data-theme="a">
+    <div data-role="page" id="signup">
       <div role="main" class="ui-content">
         <h2>Join Now!</h2>
         <form action="/api/v1/Users" method="post">
@@ -73,7 +81,7 @@
       </div>
     </div>
     
-    <div data-role="page" id="password-reset" data-theme="a">
+    <div data-role="page" id="password-reset">
       <div role="main" class="ui-content">
         <h2>Password Reset</h2>
         <p>Enter your email address</p>
@@ -85,7 +93,7 @@
       </div>
     </div>
     
-    <div data-role="page" id="reset-password" data-theme="a">
+    <div data-role="page" id="reset-password">
         <div role="main" class="ui-content">
             <h2>Reset Password</h2>
             <label for="txt-tmp-password">Temporary Password</label>
@@ -108,42 +116,42 @@
     </div>
 
     
-    <div data-role="page" id="settings" data-theme="a">
+    <div data-role="page" id="settings">
       <div role="main" class="ui-content">
         <h2>Settings</h2>
         <p>Account settings</p>
       </div>
     </div>
     
-    <div data-role="page" id="keys" data-theme="a">
+    <div data-role="page" id="keys">
       <div role="main" class="ui-content">
         <h2>Keys</h2>
         <p>Your existing Keys</p>
       </div>
     </div>
     
-    <div data-role="page" id="key" data-theme="a">
+    <div data-role="page" id="key">
       <div role="main" class="ui-content">
         <h2>Key</h2>
         <p>Create or manage a key</p>
       </div>
     </div>
     
-    <div data-role="page" id="contacts" data-theme="a">
+    <div data-role="page" id="contacts">
       <div role="main" class="ui-content">
         <h2>Contacts</h2>
         <p>Your Contacts</p>
       </div>
     </div>
     
-    <div data-role="page" id="key" data-theme="a">
+    <div data-role="page" id="key">
       <div role="main" class="ui-content">
         <h2>Contact</h2>
         <p>Create or manage a contact</p>
       </div>
     </div>
        
-    <div data-role="page" id="locked" data-theme="a">
+    <div data-role="page" id="locked">
       <div role="main" class="ui-content">            
         <h2 class="mc-text-danger">Your Account is Locked</h2>
         <p>Please contact the <a href="mailto:">HelpDesk</a> to resolve this issue.</p>
