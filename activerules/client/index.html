@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="/js/kbpgp-2.0.8-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
     <script>
       $(function () {
       $("[data-role=header]").toolbar();
@@ -14,6 +16,7 @@
       });
     </script>
     <script src="/js/settings.js" type="text/javascript"></script>
+    <script src="/js/index.js" type="text/javascript"></script>
     <style>
       h1 a { 
         text-decoration:none; 
@@ -25,18 +28,31 @@
   </head>
   <body>
     <div data-role="header" class="ui-bar ui-bar-b">
-      <h1><a href="#home" style="color:white">izzup!</a></h1>
-     <a href="#popupMenu" data-rel="popup" data-transition="slide" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-bars ui-btn-icon-right ui-btn-b">Apps</a>
+      <h1><a href="#home" style="color:whitesmoke">izzup!</a></h1>
+      <a href="#appsMenu" data-rel="popup" data-transition="slide" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-bars ui-btn-icon-right ui-btn-b">Apps</a>
+      <a href="#userMenu" data-rel="popup" data-transition="slide" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-gear ui-btn-icon-right ui-btn-b ui-btn-right">User</a>
     </div>
-    <div data-role="popup" id="popupMenu" class="ui-bar ui-bar-b">
+    
+    <!-- MENUS -->
+    <div data-role="popup" id="appsMenu" class="ui-bar ui-bar-b">
       <ul data-role="listview" data-inset="true">
-        <li><a href="#settings">Settings</a></li>
         <li><a href="#keys">Keys</a></li>
         <li><a href="#contacts">Contacts</a></li>
+        <li><a href="#classifieds">Classifieds</a></li>
+        <li><a href="#btcwrite">BTCWrite</a></li>
+      </ul>
+    </div>
+    <div data-role="popup" id="userMenu" class="ui-bar ui-bar-b">
+      <ul data-role="listview" data-inset="true">
+        <li><a href="#login">Login</a></li>
+        <li><a href="#change-password">Change Password</a></li>
+        <li><a href="#profile">Manage Profile</a></li>
+        <li><a href="#funds">Manage Funds</a></li>
       </ul>
     </div>
     
-    <div data-role="page" id="home"  class="ui-body, ui-body-a and ui-corner-all">
+    <!-- PAGES -->
+    <div data-role="page" id="home">
       <div role="main" class="ui-content">
         <h2>Welcome to izzup!</h2>
         <p class="mc-top-margin-1-5"><b>Existing Users</b></p>
@@ -49,33 +65,37 @@
     <div data-role="page" id="login">
       <div role="main" class="ui-content">
         <h2>Member Login</h2>
-        <form action="/api/v1/Users/login" method="post">
-          <label for="email">Email:</label>
-          <input type="text" name="email" id="email">
-          <label for="password">Password:</label>
-          <input type="password" name="password" id="password">
-          <input type="hidden" name="realm" id="realm" value="ultri">
-          <fieldset data-role="controlgroup">
-            <input type="checkbox" name="rememberme" id="rememberme" checked="">
-            <label for="rememberme">Remember me</label>
-          </fieldset>
-          <a href="#dlg-invalid-credentials" data-rel="popup" data-transition="pop" data-position-to="window" id="btn-submit" class="ui-btn ui-btn-a ui-corner-all mc-top-margin-1-5">Submit</a>
-          <p class="mc-top-margin-1-5"><a href="#password-reset">Can't access your account?</a></p>
-        </form>
+            <form id="check-user" class="ui-body ui-body-a ui-corner-all" data-ajax="false">
+              <fieldset>
+                <label for="email">Email:</label>
+                <input type="text" name="email" id="email">
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="password">
+                <input type="hidden" name="realm" id="realm" value="ultri">
+              </fieldset>
+              <fieldset data-role="controlgroup">
+                <input type="checkbox" name="rememberme" id="rememberme" checked="">
+                <label for="rememberme">Remember me</label>
+              </fieldset>
+              <input type="button" data-theme="a" name="submit" id="submit" value="Submit">
+            </form>                              
+        <p class="mc-top-margin-1-5"><a href="#password-reset">Can't access your account?</a></p>
       </div>
     </div>
     
     <div data-role="page" id="signup">
       <div role="main" class="ui-content">
         <h2>Join Now!</h2>
-        <form action="/api/v1/Users" method="post">
-          <label for="email">Email:</label>
-          <input type="text" name="email" id="email">
-          <label for="password">Password:</label>
-          <input type="password" name="password" id="password">
-          <label for="password">Confirm Password:</label>
-          <input type="password" name="password-confirm" id="password-confirm">
-          <input type="hidden" name="realm" id="realm" value="ultri">
+        <form class="ui-body ui-body-a ui-corner-all" action="/api/v1/Users" method="post">
+          <fieldset>
+            <label for="email">Email:</label>
+            <input type="text" name="email" id="email">
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password">
+            <label for="password">Confirm Password:</label>
+            <input type="password" name="password-confirm" id="password-confirm">
+            <input type="hidden" name="realm" id="realm" value="ultri">
+          </fieldset>
           <a href="#dlg-signup-verification-sent" data-rel="popup" data-transition="pop" data-position-to="window" id="btn-submit" class="ui-btn ui-btn-a ui-corner-all mc-top-margin-1-5">Submit</a>
         </form>
       </div>
@@ -85,37 +105,199 @@
       <div role="main" class="ui-content">
         <h2>Password Reset</h2>
         <p>Enter your email address</p>
-        <form action="/api/v1/Users/login" method="post">
+        <form class="ui-body ui-body-a ui-corner-all" action="/api/v1/Users/login" method="post">
+          <fieldset>
           <label for="email">Email:</label>
           <input type="text" name="email" id="email">
+          </fieldset>
           <a href="#dlg-password-reset" data-rel="popup" data-transition="pop" data-position-to="window" id="btn-submit" class="ui-btn ui-btn-a ui-corner-all mc-top-margin-1-5">Submit</a>
        </form>
       </div>
     </div>
     
     <div data-role="page" id="reset-password">
-        <div role="main" class="ui-content">
-            <h2>Reset Password</h2>
-            <label for="txt-tmp-password">Temporary Password</label>
-            <input type="password" name="txt-tmp-password" id="txt-tmp-password" value="">
-            <label for="txt-new-password">New Password</label>
-            <input type="password" name="txt-new-password" id="txt-new-password" value="">
-            <label for="txt-new-password-confirm">Confirm New Password</label>
-            <input type="password" name="txt-new-password-confirm" id="txt-new-password-confirm" value="">
-            <a href="#dlg-pwd-changed" data-rel="popup" data-transition="pop" data-position-to="window" id="btn-submit" class="ui-btn ui-btn-a ui-corner-all mc-top-margin-1-5">Submit</a>
-            <div data-role="popup" id="dlg-pwd-changed" data-dismissible="false" style="max-width:400px;">
-                <div data-role="header">
-                    <h1>Done</h1>
-                </div>
-                <div role="main" class="ui-content">
-                    <p>Your password was changed.</p>
-                    <div class="mc-text-center"><a href="sign-in.html" class="ui-btn ui-corner-all ui-shadow ui-btn-a mc-top-margin-1-5">OK</a></div>
-                </div>
-            </div>
+      <div role="main" class="ui-content">
+        <h2>Reset Password</h2>
+        <label for="txt-tmp-password">Temporary Password</label>
+        <input type="password" name="txt-tmp-password" id="txt-tmp-password" value="">
+        <label for="txt-new-password">New Password</label>
+        <input type="password" name="txt-new-password" id="txt-new-password" value="">
+        <label for="txt-new-password-confirm">Confirm New Password</label>
+        <input type="password" name="txt-new-password-confirm" id="txt-new-password-confirm" value="">
+        <a href="#dlg-pwd-changed" data-rel="popup" data-transition="pop" data-position-to="window" id="btn-submit" class="ui-btn ui-btn-a ui-corner-all mc-top-margin-1-5">Submit</a>
+        <div data-role="popup" id="dlg-pwd-changed" data-dismissible="false" style="max-width:400px;">
+          <div data-role="header">
+            <h1>Done</h1>
+          </div>
+          <div role="main" class="ui-content">
+            <p>Your password was changed.</p>
+            <div class="mc-text-center"><a href="sign-in.html" class="ui-btn ui-corner-all ui-shadow ui-btn-a mc-top-margin-1-5">OK</a></div>
+          </div>
         </div>
+      </div>
+    </div>
+    
+    <div data-role="page" id="login">
+      <div role="main" class="ui-content">
+        <h2>BTCWrite</h2>
+        <p>Write evidence of your files to the Bitcoin blockchain.</p>
+      </div>
+    </div>
+    
+    <div data-role="page" id="btcwrite">
+      <div role="main" class="ui-content">
+        <h2>BTCWrite&trade;</h2>
+        <p>Write to the blockchain</p>
+        
+<details>
+  <summary>What's this?</summary>
+  <div>
+    <p>Example of the <a href="http://dev.w3.org/2011/webrtc/editor/getusermedia.html" target="_blank" title="Spec link" alt="Spec link"><code>navigator.getUserMedia()</code></a>
+    API for capturing audio and video, sans plugin. This demo also shows the video being rendered
+    to while <a href="/static/css/filters/index.html">CSS filters</a> are applied in realtime (click the video).</p>
+    <p><b>Support:</b> Chrome 18.0.1009.0 with the <code>--enable-media-stream</code> flag set. Chrome 20.0.1125.0 changed
+      the method signature to the updated spec: <code>getUserMedia({video: true})</code></p>
+  </div>
+</details>
+
+<article>
+ <h3>Camera</h3>
+ <section id="app" hidden>
+  <div class="container"><span id="live">LIVE</span><video id="monitor" autoplay onclick="changeFilter(this)" title="Click me to see different filters"></video></div>
+  <p>Click the video to see different CSS filters</p>
+ </section>
+ <p><button onclick="init(this)">Capture</button></p>
+ <div id="splash">
+  <p id="errorMessage">&uarr;<br>Click to begin</p>
+ </div>
+ <div id="gallery"></div>
+</article>
+<canvas id="photo" style="display:none"></canvas>
+<script>
+navigator.getUserMedia = navigator.webkitGetUserMedia || navigator.getUserMedia;
+window.URL = window.URL || window.webkitURL;
+
+var app = document.getElementById('app');
+var video = document.getElementById('monitor');
+var canvas = document.getElementById('photo');
+var effect = document.getElementById('effect');
+var gallery = document.getElementById('gallery');
+var ctx = canvas.getContext('2d');
+var intervalId = null;
+var idx = 0;
+var filters = [
+  'grayscale',
+  'sepia',
+  'blur',
+  'brightness',
+  'contrast',
+  'hue-rotate', 'hue-rotate2', 'hue-rotate3',
+  'saturate',
+  'invert',
+  ''
+];
+
+function changeFilter(el) {
+  el.className = '';
+  var effect = filters[idx++ % filters.length];
+  if (effect) {
+    el.classList.add(effect);
+  }
+}
+
+function gotStream(stream) {
+  if (window.URL) {
+    video.src = window.URL.createObjectURL(stream);
+  } else {
+    video.src = stream; // Opera.
+  }
+
+  video.onerror = function(e) {
+    stream.stop();
+  };
+
+  stream.onended = noStream;
+
+  video.onloadedmetadata = function(e) { // Not firing in Chrome. See crbug.com/110938.
+    document.getElementById('splash').hidden = true;
+    document.getElementById('app').hidden = false;
+  };
+
+  // Since video.onloadedmetadata isn't firing for getUserMedia video, we have
+  // to fake it.
+  setTimeout(function() {
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    document.getElementById('splash').hidden = true;
+    document.getElementById('app').hidden = false;
+  }, 50);
+}
+
+function noStream(e) {
+  var msg = 'No camera available.';
+  if (e.code == 1) {
+    msg = 'User denied access to use camera.';
+  }
+  document.getElementById('errorMessage').textContent = msg;
+}
+
+function capture() {
+  if (intervalId) {
+    clearInterval(intervalId);
+    intervalId = null;
+    return;
+  }
+
+  intervalId = setInterval(function() {
+    ctx.drawImage(video, 0, 0);
+    var img = document.createElement('img');
+    img.src = canvas.toDataURL('image/webp');
+
+    var angle = Math.floor(Math.random() * 36);
+    var sign = Math.floor(Math.random() * 2) ? 1 : -1;
+    img.style.webkitTransform = 'rotateZ(' + (sign * angle) + 'deg)';
+
+    var maxLeft = document.body.clientWidth;
+    var maxTop = document.body.clientHeight;
+
+    img.style.top = Math.floor(Math.random() * maxTop) + 'px';
+    img.style.left = Math.floor(Math.random() * maxLeft) + 'px';
+
+    gallery.appendChild(img);
+  }, 150);
+}
+
+function init(el) {
+  if (!navigator.getUserMedia) {
+    document.getElementById('errorMessage').innerHTML = 'Sorry. <code>navigator.getUserMedia()</code> is not available.';
+    return;
+  }
+  el.onclick = capture;
+  el.textContent = 'Snapshot';
+  navigator.getUserMedia({video: true}, gotStream, noStream);
+}
+
+window.addEventListener('keydown', function(e) {
+  if (e.keyCode == 27) { // ESC
+    document.querySelector('details').open = false;
+  }
+}, false);
+</script>
+
+<!--[if IE]>
+<script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+<script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->        
+        
+        
+        
+        
+        
+        
+        
+      </div>
     </div>
 
-    
     <div data-role="page" id="settings">
       <div role="main" class="ui-content">
         <h2>Settings</h2>
@@ -134,6 +316,8 @@
       <div role="main" class="ui-content">
         <h2>Key</h2>
         <p>Create or manage a key</p>
+        <button class="ui-btn" onclick="createKey();">Create key</button>
+       <button class="ui-btn" onclick="showLocalStorage();">LocalStorage</button>
       </div>
     </div>
     
@@ -144,10 +328,45 @@
       </div>
     </div>
     
-    <div data-role="page" id="key">
+    <div data-role="page" id="contact">
       <div role="main" class="ui-content">
         <h2>Contact</h2>
         <p>Create or manage a contact</p>
+      </div>
+    </div>
+    
+    <div data-role="page" id="classifieds">
+      <div role="main" class="ui-content">
+        <h2>Classifieds</h2>
+        <p>Your Classifieds</p>
+      </div>
+    </div>
+    
+    <div data-role="page" id="logout">
+      <div role="main" class="ui-content">
+        <h2>Logged Out</h2>
+        <p>You have been logged out.</p>
+      </div>
+    </div>
+    
+    <div data-role="page" id="change-password">
+      <div role="main" class="ui-content">
+        <h2>Change Password</h2>
+        <p>Change your password</p>
+      </div>
+    </div>
+    
+    <div data-role="page" id="profile">
+      <div role="main" class="ui-content">
+        <h2>User Profile</h2>
+        <p>Update your profile</p>
+      </div>
+    </div>
+    
+    <div data-role="page" id="funds">
+      <div role="main" class="ui-content">
+        <h2>Member Funds</h2>
+        <p>Manage izzup! funds</p>
       </div>
     </div>
        
@@ -157,9 +376,8 @@
         <p>Please contact the <a href="mailto:">HelpDesk</a> to resolve this issue.</p>
       </div>
     </div>
-    
-    
-    
+       
+    <!-- POPUPS -->
     <div data-role="popup" id="dlg-signup-verification-sent" data-dismissible="false" style="max-width:400px;">
       <div class="ui-content">
         <h3>Confirm Your Email Address</h3>
@@ -188,6 +406,12 @@
       <div class="mc-text-center"><a href="sign-in.html" class="ui-btn ui-corner-all ui-shadow ui-btn-a mc-top-margin-1-5">OK</a></div>
     </div>
       
+    <div data-role="popup" id="dlg-error"  data-history="false" style="max-width:400px;">
+      <div role="main" class="ui-content ui-body ui-body-a ui-corner-all">
+        <h3 style="color:red">Error</h3>
+          <div id="errors"></div>
+    </div>
+      <a id='myError' href="#error" data-rel="dialog" data-transition="pop" style='display:none;'></a>
 </div>
    </body>
 </html>
