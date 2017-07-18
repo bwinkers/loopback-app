@@ -28,6 +28,8 @@
     "loopback-connector-mailgun": "0.0.8",
     "loopback-connector-mongodb": "^1.18.1",
     "serve-favicon": "^2.0.1",
+    "socketio": "^1.0.0",
+    "socketio-auth": "^0.1.0",
     "strong-error-handler": "^2.0.0"
   },
   "devDependencies": {
