@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="/js/kbpgp-2.0.8-min.js"></script>
     <script>
       $(function () {
       $("[data-role=header]").toolbar();
@@ -160,6 +161,8 @@
       <div role="main" class="ui-content">
         <h2>Key</h2>
         <p>Create or manage a key</p>
+        <button class="ui-btn" onclick="createKey();">Create key</button>
+       <button class="ui-btn" onclick="showLocalStorage();">LocalStorage</button>
       </div>
     </div>
     
@@ -248,6 +251,12 @@
       <div class="mc-text-center"><a href="sign-in.html" class="ui-btn ui-corner-all ui-shadow ui-btn-a mc-top-margin-1-5">OK</a></div>
     </div>
       
+    <div data-role="popup" id="dlg-error"  data-history="false" style="max-width:400px;">
+      <div role="main" class="ui-content ui-body ui-body-a ui-corner-all">
+        <h3 style="color:red">Error</h3>
+          <div id="errors"></div>
+    </div>
+      <a id='myError' href="#error" data-rel="dialog" data-transition="pop" style='display:none;'></a>
 </div>
    </body>
 </html>
