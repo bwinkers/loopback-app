@@ -67,19 +67,19 @@
     <div data-role="page" id="login">
       <div role="main" class="ui-content">
         <h2>Member Login</h2>
-            <form id="check-user" class="ui-body ui-body-a ui-corner-all" data-ajax="false">
+            <form id="login-form" class="ui-body ui-body-a ui-corner-all" data-ajax="false">
               <fieldset>
                 <label for="email">Email:</label>
-                <input type="text" name="email" id="email">
+                <input type="text" name="email" id="login-email">
                 <label for="password">Password:</label>
-                <input type="password" name="password" id="password">
-                <input type="hidden" name="realm" id="realm" value="ultri">
+                <input type="password" name="password" id="login-password">
+                <input type="hidden" name="realm" value="ultri">
               </fieldset>
               <fieldset data-role="controlgroup">
                 <input type="checkbox" name="rememberme" id="rememberme" checked="">
                 <label for="rememberme">Remember me</label>
               </fieldset>
-              <input type="button" data-theme="a" name="submit" id="submit" value="Submit">
+              <input type="button" data-theme="a" name="submit" id="login-submit" value="Submit">
             </form>                              
         <p class="mc-top-margin-1-5"><a href="#password-reset">Can't access your account?</a></p>
       </div>
@@ -88,7 +88,14 @@
     <div data-role="page" id="signup">
       <div role="main" class="ui-content">
         <h2>Join Now!</h2>
-        <form class="ui-body ui-body-a ui-corner-all" action="/api/v1/Users" method="post">
+        <div id="signup-form"></div>
+      </div>
+    </div>
+    
+    <div data-role="page" id="signup2">
+      <div role="main" class="ui-content">
+        <h2>Join Now!</h2>
+ <form id="check-user" class="ui-body ui-body-a ui-corner-all" data-ajax="false">
           <fieldset>
             <label for="email">Email:</label>
             <input type="text" name="email" id="email">

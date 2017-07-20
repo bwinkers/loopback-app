@@ -1,8 +1,8 @@
-$(document).on('pageinit', '#login', function () {
-    $(document).on('click', '#submit', function () { // catch the form's submit event
-        if ($('#email').val().length > 0 && $('#password').val().length > 0) {
+$(document).on('pagecreate', '#login', function () {
+    $(document).on('click', '#login-submit', function () { // catch the form's submit event
+        if ($('#login-email').val().length > 0 && $('#login-password').val().length > 0) {
             $.ajax({url: '/api/v1/Users/login',
-                data: $('#check-user').serialize(),
+                data: $('#login-form').serialize(),
                 type: 'post',
                 async: 'true',
                 dataType: 'json',
@@ -18,7 +18,8 @@ $(document).on('pageinit', '#login', function () {
                     if (result.id) {
                         $.mobile.changePage("#profile");
                     } else {
-                        alert('Logon unsuccessful!');
+                        $("#errors").html('Login unsuccessful');                 
+                        $("#dlg-error").popup('open');
                     }
                 },
                 error: function (response, status, error) {
@@ -36,6 +37,90 @@ $(document).on('pageinit', '#login', function () {
     });
 });
 
+$( document ).on( "pagecontainerbeforechange", function ( event, data ) {
+    
+    var absUrl = data.absUrl ? $.mobile.path.parseUrl(data.absUrl).hash.split("#")[1] : "";
+ 
+   //alert( absUrl);
+});
+
+$("#login").on("pagecontainerbeforeshow", 
+    function( event, ui ) {
+         
+              alert('login');
+ 
+    }
+);
+
+var forms = [];
+
+forms['signup'] = {
+    fields: ['email', 'password']
+}
+
+var fields = [];
+
+fields['email'] = {
+    type: "text",
+    label: "Email"
+};
+
+fields['password'] = {
+    type: "password",
+    label: "Password"
+};
+
+
+$(document).on("pagecontainerbeforeshow", 
+    function( event, ui ) {
+         if(ui.toPage[0].id === "signup"){
+              // Do stuff
+              var fields = forms.signup.fields;
+              fields.forEach(function(item, index) {
+                  // alert(item);
+              })
+            
+              return assembleForm('signup', null, function(err, formStr) {
+                  console.log(formStr);  
+                  $("#signup-form").html(formStr);
+              });
+              
+              
+         }
+    }
+);
+
+function assembleForm(name, data, cb) {
+    var fields = forms[name].fields;
+    
+    var formString = '<form>';
+    formString = formString.concat('<button>Submit</button></form>');
+    
+    cb(false, formString);
+    
+    var formData = {};
+    
+    fields.forEach(function(field, index) {
+        formString.concat(assembleField(field, formData));
+    })
+    
+    formString.concat('<button>Submit</button></form>');
+    
+    return formString;
+}
+
+function assembleField(field, formData) {
+    fieldDef = fields[field];
+    
+    fieldString = '';
+    
+    if(fieldDef.type === 'text') {
+        fieldString.concat('<input type="text" name="'+field+'" id="" value="">');
+    }
+    
+    return fieldString;
+    
+}
 
 var F = kbpgp["const"].openpgp;
 
