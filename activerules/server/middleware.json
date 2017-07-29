@@ -4,6 +4,7 @@
   },
   "initial": {
     "./middleware/performance-tracker": {},
+    "./middleware/activerules": {},
     "compression": {},
     "cors": {
       "params": {
