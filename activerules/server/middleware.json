@@ -3,6 +3,10 @@
     "loopback#favicon": {}
   },
   "initial": {
+    "./middleware/performance-tracker": {},
+    "activerules-middleware": {
+        "params": "../../../common/ar"
+    },
     "compression": {},
     "cors": {
       "params": {
