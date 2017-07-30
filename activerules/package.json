@@ -13,6 +13,7 @@
   "dependencies": {
     "@mean-expert/loopback-component-realtime": "^1.0.0-rc.9.2",
     "@mean-expert/loopback-sdk-builder": "^2.1.0-rc.12.1",
+    "activerules-middleware": "^0.1.0",
     "async": "^2.5.0",
     "bcrypt": "^1.0.2",
     "compression": "^1.0.3",
