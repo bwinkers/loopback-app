@@ -6,9 +6,6 @@ It adds ActiveRules goodness on top of:
 * Mailgun
 * Angular2
 
-loopback-app$ lb
-loopback-app$ lb datasource
-
 ## Running
 
 ### Prod
