@@ -3,5 +3,6 @@
         "firstYear": 2016,
         "owner": "Ultri"
     },
-    "name": "izzup!"
+    "name": "izzup!",
+    "viewRoot": "/home/brian/sandbox/loopback-app/activerules/server/views/"
 }
