@@ -1,7 +1,20 @@
+'use strict';
+
+var avr = require('../activerules-view-resolver');
+
 module.exports = function(app) {
-  // Add a simple server health check router
-  app.get('/server-health', function(req, res) {
-    res.json({ running: true });
-  });
+    // Homepage
+    app.get('/', function (req, res) {
+        avr.resolvePage('home', req, '../views/')
+        .then(function(html){
+            res.send(html);
+        })
+        
+    });
+    
+    // Health check router
+    app.get('/server-health', function(req, res) {
+        res.json({ running: true });
+    });
 }
 
