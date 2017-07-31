@@ -29,15 +29,15 @@ var bodyParser = require('body-parser');
  * if any. This is often the best approach, because the verify callback
  * can make the most accurate determination of why authentication failed.
  */
-var flash      = require('express-flash');
+var flash = require('express-flash');
 
 // Build the providers/passport config
 var config = {};
 try {
-	config = require('../providers.json');
+  config = require('../providers.json');
 } catch (err) {
-	console.trace(err);
-	process.exit(1); // fatal
+  console.trace(err);
+  process.exit(1); // fatal
 }
 
 app.start = function() {
@@ -59,34 +59,32 @@ boot(app, __dirname, function(err) {
   if (err) throw err;
 
   // start the server if `$ node server.js`
-  if (require.main === module)
-    //app.start();
-        
+  if (require.main === module) {
     app.io = require('socket.io')(app.start());
-    require('socketio-auth')(app.io, {
-      authenticate: function (socket, value, callback) {
+  }
+  require('socketio-auth')(app.io, {
+    authenticate: function(socket, value, callback) {
+      var AccessToken = app.models.AccessToken;
+          // get credentials sent by the client
+      var token = AccessToken.find({
+        where: {
+          and: [{userId: value.userId}, {id: value.id}],
+        },
+      }, function(err, tokenDetail) {
+        if (err) throw err;
+        if (tokenDetail.length) {
+          callback(null, true);
+        } else {
+          callback(null, false);
+        }
+      }); // find function..
+    }, // authenticate function..
+  });
 
-          var AccessToken = app.models.AccessToken;
-          //get credentials sent by the client
-          var token = AccessToken.find({
-            where:{
-              and: [{ userId: value.userId }, { id: value.id }]
-            }
-          }, function(err, tokenDetail){
-            if (err) throw err;
-            if(tokenDetail.length){
-              callback(null, true);
-            } else {
-              callback(null, false);
-            }
-          }); //find function..    
-        } //authenticate function..
+  app.io.on('connection', function(socket) {
+    console.log('a user connected');
+    socket.on('disconnect', function() {
+      console.log('user disconnected');
     });
-
-    app.io.on('connection', function(socket){
-      console.log('a user connected');
-      socket.on('disconnect', function(){
-          console.log('user disconnected');
-      });
-    });
+  });
 });

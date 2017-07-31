@@ -1,5 +1,7 @@
+'use strict';
+
 module.exports = function() {
-  return function performance_tracker(req, res, next) {
+  return function performanceTracker(req, res, next) {
     var start = process.hrtime();
     res.once('finish', function() {
       var diff = process.hrtime(start);
