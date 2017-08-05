@@ -1,12 +1,17 @@
 'use strict';
 
+// Awesome basic functions
 var _ = require('lodash');
 
+// Standardv semantic template support
 var hbs = require('handlebars');
 
 // Promisified core Node functions
 var fs = require('mz/fs');
 
+/**
+ * Create a function returning an empty object
+ */
 var AR = function(){};
 
 /**
@@ -16,9 +21,10 @@ var AR = function(){};
  * @param {type} arRoot
  * @returns {undefined}
  */
-AR.prototype.init = function(defaultViewRoot, arRoot){
-    AR.prototype.defaultViewRoot = defaultViewRoot;
+AR.prototype.init = function(arRoot){
+    AR.prototype.defaultViewRoot = arRoot + '/views';
     AR.prototype.arRoot = arRoot;
+
 }
 
 /**
@@ -29,7 +35,7 @@ AR.prototype.init = function(defaultViewRoot, arRoot){
  * @param {type} viewRoot
  * @returns {Promise}
  */
-AR.prototype.resolvePage = function(page, request, viewRoot) {
+AR.prototype.resolvePage = function(page, request) {
 
     var viewPath; // The path of the view regardless of root.
     var siteView; // View served for this site
@@ -85,4 +91,7 @@ function getPageData(page, request) {
 }
 ;
 
+/**
+ * Export a new instance of the ActiveRules view resolver
+ */
 module.exports = exports = new AR();
