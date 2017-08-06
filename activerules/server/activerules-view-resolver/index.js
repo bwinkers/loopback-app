@@ -1,13 +1,20 @@
 'use strict';
 
-// Awesome basic functions
+// Awesome utilities
 var _ = require('lodash');
 
-// Standardv semantic template support
+// Standard semantic template support
 var hbs = require('handlebars');
 
 // Promisified core Node functions
 var fs = require('mz/fs');
+
+// Internationalization (i18n) library
+var i18n = require("i18next");
+var i18nOptions = {
+    lng: "en"
+}
+i18n.init(i18nOptions);
 
 /**
  * Create a function returning an empty object
@@ -17,22 +24,19 @@ var AR = function(){};
 /**
  * Initializer function to set required paths in object
  * 
- * @param {type} defaultViewRoot
- * @param {type} arRoot
- * @returns {undefined}
+ * @param string arRoot
+ * @returns null
  */
 AR.prototype.init = function(arRoot){
-    AR.prototype.defaultViewRoot = arRoot + '/views';
+    // The root for ActiveRules files
     AR.prototype.arRoot = arRoot;
-
 }
 
 /**
  * Provides site specific page template and data
  * 
- * @param {type} page
- * @param {type} request
- * @param {type} viewRoot
+ * @param string page
+ * @param object request
  * @returns {Promise}
  */
 AR.prototype.resolvePage = function(page, request) {
@@ -50,7 +54,7 @@ AR.prototype.resolvePage = function(page, request) {
             siteView = AR.prototype.arRoot + '/site/' + request.ar.site.site + '/views/' + viewPath;
             
             if(!fs.existsSync(siteView)) {
-                siteView = AR.prototype.defaultViewRoot + viewPath;
+                siteView = AR.prototype.arRoot + '/views/' + viewPath;
             }
             
             // Try loading the view w/ data
@@ -58,7 +62,7 @@ AR.prototype.resolvePage = function(page, request) {
                 fs.readFile(siteView, 'utf8')
                  .then(function(fileContent) {
                      template = hbs.compile(fileContent);
-                     getPageData(page, request)
+                     AR.prototype.getPageData(page, request)
                      .then(function(pageData) {
                          html = template(pageData);
                          resolve(html);
@@ -72,24 +76,28 @@ AR.prototype.resolvePage = function(page, request) {
 };
 
 /**
- * This merges the site page data for a locale over the default page data for a locale.
+ * We use the i18next libraries to manage localizing site content
  * 
- * @param {type} page
- * @param {type} request
+ * @param string page
+ * @param object request
  * @returns {Promise}
  */
-function getPageData(page, request) {
+AR.prototype.getPageData = function(page, request) {
     return new Promise(
         function(resolve, reject) {
-          try {
-            resolve({test: 'data'});
-          } catch (err) {
-            reject(err);
-          }
+            try {
+
+                var option = { resGetPath: 'locales/__ns__-__lng__.json' };
+ 
+                i18n.init(option);
+
+              resolve({test: 'data'});
+            } catch (err) {
+              reject(err);
+            }
         }
     );
-}
-;
+};
 
 /**
  * Export a new instance of the ActiveRules view resolver
