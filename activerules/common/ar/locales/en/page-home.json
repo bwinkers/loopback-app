@@ -1,0 +1,16 @@
+{
+    "foot": {},
+    "head": {
+        "title": "$t(site:name)",
+        "js": {},
+        "css": {}
+    },
+    "nav": {
+        "link": "/",
+        "menuText": "Home"
+    },
+    "views": {
+        "layout": "base",
+        "core": "jumbotron"
+    }   
+}

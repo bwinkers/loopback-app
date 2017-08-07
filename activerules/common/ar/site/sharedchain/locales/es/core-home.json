@@ -1,0 +1,22 @@
+{
+    "heading": "Welcome to $t(site.name) - The Blockchain and Crypto SaaS solution",
+    "callout": {
+        "html": "SharedChain&trade; is offering free developer access to its hosted blockchain solutions. Request to be included in the <b>Beta Team</b> today.",
+        "link": {  
+            "page": "/request-developer-access",
+            "linkText": "Request Access"
+        }
+    },
+    "content1": {
+        "heading": "Supported blockchains",
+        "html": "<ul><li>Bitcoin</li><li>Litecoin</li><li>Dogecoin</li></ul>"
+    },
+    "content2": {
+        "heading": "Advantages",
+        "html": "<ul><li>By developing toward the native RPC protocol over an HTTP API the devloper is better positioned to later support their own node.</li><li>Developers don't need to pay for the large amount of cloud services a blockchain can consume.</li></ul>"
+    },
+    "content3": {
+        "heading": "Donate Today",
+        "html": "SharedChain is supported entirely by donations. Please contribute today if you'd like to help keep this service running."
+    }
+}

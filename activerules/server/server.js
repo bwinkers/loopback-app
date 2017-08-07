@@ -4,6 +4,22 @@ var loopback = require('loopback');
 var boot = require('loopback-boot');
 
 var app = module.exports = loopback();
+// Internationalization (i18n) library
+var i18next = require("i18next");
+const Backend = require('i18next-node-fs-backend');
+
+i18next
+  .use(Backend)
+  .init({
+    backend: {
+      loadPath: __dirname + '/locales/{{lng}}/{{ns}}.json',
+      addPath: __dirname + '/locales/{{lng}}/{{ns}}.missing.json'
+    },
+    fallbackLng: 'en',
+    preload: ['en', 'de'],
+    saveMissing: true
+  });
+
 
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
