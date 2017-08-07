@@ -12,7 +12,8 @@ var fs = require('mz/fs');
 // Internationalization (i18n) library
 var i18n = require("i18next");
 var i18nOptions = {
-    lng: "en"
+    supportedLngs: ['en']
+    ignoreRoutes: ['images/', 'css/', 'js/']
 }
 i18n.init(i18nOptions);
 
@@ -62,7 +63,7 @@ AR.prototype.resolvePage = function(page, request) {
                 fs.readFile(siteView, 'utf8')
                  .then(function(fileContent) {
                      template = hbs.compile(fileContent);
-                     AR.prototype.getPageData(page, request)
+                     getPageData(page, request)
                      .then(function(pageData) {
                          html = template(pageData);
                          resolve(html);
@@ -82,23 +83,25 @@ AR.prototype.resolvePage = function(page, request) {
  * @param object request
  * @returns {Promise}
  */
-AR.prototype.getPageData = function(page, request) {
+AR.prototype.getPageData = getPageData;
+
+
+function getPageData(page, request) {
     return new Promise(
         function(resolve, reject) {
             try {
 
-                var option = { resGetPath: 'locales/__ns__-__lng__.json' };
- 
-                i18n.init(option);
+                var option = { resGetPath: AR.prototype.arRoot + '/i18n/__lng__/__ns__.json' };
 
-              resolve({test: 'data'});
+                i18n.init(option);
+                var data = 
+                resolve({test: 'data'});
             } catch (err) {
               reject(err);
             }
         }
     );
 };
-
 /**
  * Export a new instance of the ActiveRules view resolver
  */
