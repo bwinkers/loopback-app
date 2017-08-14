@@ -1,4 +1,11 @@
-FROM nodesource/node:7
+FROM nodesource/node:6
+
+RUN  apt-get update \
+  && apt-get install -y wget \
+  && rm -rf /var/lib/apt/lists/*
+
+RUN wget https://github.com/Yelp/dumb-init/releases/download/v1.2.0/dumb-init_1.2.0_amd64.deb
+RUN dpkg -i dumb-init_*.deb
 
 RUN groupadd -r nodejs \
    && useradd -m -r -g nodejs nodejs
@@ -11,8 +18,5 @@ WORKDIR /home/nodejs/app
 COPY package.json .
 RUN npm install --production
 COPY . .
-
-ADD https://github.com/Yelp/dumb-init/releases/download/v1.1.1/dumb-init_1.1.1_amd64 /usr/local/bin/dumb-init
-RUN chmod +x /usr/local/bin/dumb-init
 
 CMD ["dumb-init", "node", "index.js"]
