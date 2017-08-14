@@ -1,0 +1,9 @@
+{
+    "name": "izzup!",
+    "copyright": "izzup! &copy; 2017",
+    "contact": {
+        "email": "info@izzup.com"
+    },
+    "siteVar": "my site var",
+    "siteOnlyVar": "only in  site"
+}

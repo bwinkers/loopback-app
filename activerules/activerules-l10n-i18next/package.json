@@ -1,0 +1,19 @@
+{
+  "name": "activerules-l10n-i18next",
+  "version": "0.1.0",
+  "description": "Localization based on i18next but allowing a more complex combination of translation parts.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "activerules",
+    "loopback",
+    "i18next",
+    "l10n",
+    "localization",
+    "hypermarketing"
+  ],
+  "author": "Brian Winkers",
+  "license": "ISC"
+}

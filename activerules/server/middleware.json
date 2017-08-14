@@ -7,12 +7,6 @@
     "activerules-middleware": {
         "params": "/home/brian/sandbox/loopback-app/activerules/common/ar"
     },
-    "activerules-i18next-middleware": {
-        "params": {
-            "rootDir": "/home/brian/sandbox/loopback-app/activerules/common/ar",
-            "supportedLngs": ["en", "de"]
-        }
-    },
     "compression": {},
     "cors": {
       "params": {

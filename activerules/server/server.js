@@ -5,21 +5,36 @@ var boot = require('loopback-boot');
 
 var app = module.exports = loopback();
 // Internationalization (i18n) library
-var i18next = require("i18next");
+var i18n = require("i18next");
+var i18nMiddleware = require('i18next-express-middleware');
 const Backend = require('i18next-node-fs-backend');
 
-i18next
-  .use(Backend)
-  .init({
+i18n
+    .use(Backend)  
+    .use(i18nMiddleware.LanguageDetector)    
+    .init({
+    ignoreRoutes: ['images/', 'public/', 'css/', 'js/'],
     backend: {
-      loadPath: __dirname + '/locales/{{lng}}/{{ns}}.json',
-      addPath: __dirname + '/locales/{{lng}}/{{ns}}.missing.json'
+      loadPath: '/home/brian/sandbox/loopback-app/activerules/common/ar/locales/{{lng}}/{{ns}}.json',
+      addPath: '/home/brian/sandbox/loopback-app/activerules/common/ar/locales/{{lng}}/{{ns}}.missing.json'
     },
+    lngWhitelist: ['en'],
     fallbackLng: 'en',
-    preload: ['en', 'de'],
-    saveMissing: true
-  });
+    preload: ['en'],
+    saveMissing: true,
+    ns: ['site'], 
+    defaultNs: 'site',
+  //  debug: true
+});
 
+app.use(i18nMiddleware.handle(i18n, {
+  ignoreRoutes: ["/css", "/js"],
+  removeLngFromUrl: false
+}));
+
+
+//console.log(i18n.t('site:name'));
+ 
 
 var cookieParser = require('cookie-parser');
 var session = require('express-session');

@@ -1,7 +1,9 @@
 {
-    "name": "SharedChain",
-    "copyright": "SharedChain &copy; 2017",
+    "name": "Your Site Here",
+    "copyright": "yoursite &copy; 2017",
     "contact": {
-        "email": "developer-support@sharedchain.com"
-    }
+        "email": "support@yoursite.com"
+    },
+    "siteVar": "I best get overwritten",
+    "sharedOnly": "I mbest make it through"
 }
