@@ -13,7 +13,7 @@
   "dependencies": {
     "@mean-expert/loopback-component-realtime": "^1.0.0-rc.9.2",
     "@mean-expert/loopback-sdk-builder": "^2.1.0-rc.12.1",
-    "activerules-middleware": "^1.0.5",
+    "activerules-middleware": "latest",
     "async": "^2.5.0",
     "bcrypt": "^1.0.2",
     "compression": "^1.0.3",
@@ -45,8 +45,13 @@
   },
   "devDependencies": {
     "@mean-expert/loopback-sdk-builder": "^2.1.0-rc.12.1",
-    "eslint": "^3.17.1",
+    "eslint": "^3.19.0",
     "eslint-config-loopback": "^8.0.0",
+    "eslint-config-sinon": "^1.0.3",
+    "eslint-config-strict": "^14.0.0",
+    "eslint-plugin-mocha": "^4.11.0",
+    "husky": "^0.14.3",
+    "lint-staged": "^4.0.4",
     "nsp": "^2.1.0"
   },
   "repository": {

@@ -4,5 +4,17 @@
         "owner": "Ultri"
     },
     "name": "izzup!",
+    "pages": {
+      "home": {
+        "layout": {
+          "view": "mobileFirst",
+          "context": ["layout"]
+        },
+        "core": {
+          "view": "jumbotron",
+          "context": ["home", "plans"]
+        }
+      }
+    },
     "viewRoot": "/home/brian/sandbox/loopback-app/activerules/server/views/"
 }
