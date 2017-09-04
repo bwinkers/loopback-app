@@ -31,6 +31,14 @@ var bodyParser = require('body-parser');
  */
 var flash      = require('express-flash');
 
+/**
+ * Marko UI library
+ * @type Module express|Module express
+ */
+var markoExpress = require('marko/express');
+require('marko/node-require');
+app.use(markoExpress()); //enable res.marko(template, data)
+
 // Build the providers/passport config
 var config = {};
 try {
