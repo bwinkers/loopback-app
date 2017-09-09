@@ -1,0 +1,3 @@
+./README.md # a specific file
+*.css # ignore any CSS files too
+*.marko.js # Ignore compiled Marko files

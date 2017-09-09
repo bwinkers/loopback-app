@@ -48,6 +48,8 @@ try {
 	process.exit(1); // fatal
 }
 
+app.use(require('lasso/middleware').serveStatic());
+
 app.start = function() {
   // start the web server
   return app.listen(function() {
